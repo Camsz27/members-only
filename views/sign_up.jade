@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  form(action="", method="post" class='w-50 mx-auto text-white fs-5 mt-5 pt-5')
+    h1(class='text-info text-center mb-4') Sign up to you account
+    div(class='mb-4 d-flex flex-column w-50 mx-auto')
+      label() Username 
+      input(type='text')
+    div(class='mb-4 d-flex flex-column w-50 mx-auto')
+      label() Password 
+      input(type='password')
+    div(class='mb-4 d-flex flex-column w-50 mx-auto')
+      label() Confirm Password
+      input(type='password')
+      button(type='submit' class='btn text-white bg-info mt-5 w-50 mx-auto') Sign up
