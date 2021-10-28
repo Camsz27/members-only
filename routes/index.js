@@ -10,4 +10,16 @@ router.get('/sign-up', function (req, res, next) {
   res.render('sign_up', { title: 'Sign up' });
 });
 
+router.post('/sign-up', function (req, res, next) {
+  res.send('it worked');
+});
+
+router.get('/login', function (req, res, next) {
+  res.render('login', { title: 'Login' });
+});
+
+router.post('/login', function (req, res, next) {
+  res.send('it worked for login');
+});
+
 module.exports = router;
