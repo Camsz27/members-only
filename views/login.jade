@@ -4,9 +4,13 @@ block content
   form(action="", method="post" class='w-50 mx-auto text-white fs-5 mt-5 pt-5')
     h1(class='text-info text-center mb-4') Login to you account
     div(class='mb-4 d-flex flex-column w-50 mx-auto')
-      label(class='mb-2') Username 
-      input(type='text')
+      label(class='mb-2' for='username') Username 
+      input(type='text' id='username' name='username' required class='form-control')
     div(class='mb-4 d-flex flex-column w-50 mx-auto')
-      label(class='mb-2') Password 
-      input(type='password')
+      label(class='mb-2 form-label' for='password') Password 
+      input(type='password' id='password' name='password' required class='form-control')
       button(type='submit' class='btn text-white bg-info my-5 w-50 mx-auto') Login
+  div(class='w-50 mx-auto')
+  if errors
+    for error in errors 
+      h4(class='text-light')=error.msg
