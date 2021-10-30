@@ -5,10 +5,10 @@ block content
     h1(class='text-info text-center mb-4') Login to you account
     div(class='mb-4 d-flex flex-column w-50 mx-auto')
       label(class='mb-2' for='username') Username 
-      input(type='text' id='username' name='username' required class='form-control')
+      input(type='text' id='username' name='username' required class='form-control' autocomplete='username')
     div(class='mb-4 d-flex flex-column w-50 mx-auto')
       label(class='mb-2 form-label' for='password') Password 
-      input(type='password' id='password' name='password' required class='form-control')
+      input(type='password' id='password' name='password' required class='form-control'  autocomplete='current-password')
       button(type='submit' class='btn text-white bg-info my-5 w-50 mx-auto') Login
   div(class='w-50 mx-auto')
   if errors

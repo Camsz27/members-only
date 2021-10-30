@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
 const mongoose = require('mongoose');
+// const passport = require('passport');
+// const session = require('express-session');
 
 // Database connection
 const mongoDB = process.env.MONGO_URI;
@@ -25,6 +27,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
 
