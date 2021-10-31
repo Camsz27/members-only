@@ -7,7 +7,7 @@ const userController = require('../controllers/userController');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Members Only', user: req.user.username });
+  res.render('index', { title: 'Members Only', user: currentUser });
 });
 
 router.get('/sign-up', userController.sign_up_get);
@@ -18,16 +18,43 @@ router.get('/login', userController.login_get);
 
 router.post(
   '/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function (req, res) {
+  passport.authenticate('local'),
+  function (req, res, next) {
     try {
-      console.log(req.user);
+      global.currentUser = req.user;
+      req.logIn(req.user, (err) => {
+        if (err) {
+          res.render('/login', { error: err });
+          return next(err);
+        }
+      });
+      res.redirect('/');
     } catch (error) {
-      console.log('what is dat');
-      console.log(error);
+      return error;
     }
-    res.render('index', { title: 'Members Only', user: req.user.username });
   }
 );
+
+// router.post(
+//   '/login',
+//   passport.authenticate('local', { failureRedirect: '/login' }),
+//   function (req, res) {
+//     try {
+//       req.logIn(req.user, (err) => {
+//         if (err) {
+//           return next(err);
+//         }
+//       });
+//     } catch (error) {
+//       return error;
+//     }
+//     // res.render('index', { title: 'Members Only', user: req.user.username });
+//     //console.log(req.user);
+//     //console.log(req.session);
+//     res.redirect('/');
+//     //console.log(req.user);
+//     //console.log(req.session);
+//   }
+// );
 
 module.exports = router;
