@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 // Show sign up form
 exports.sign_up_get = function (req, res, next) {
@@ -68,9 +69,27 @@ exports.log_out_post = function (req, res, next) {
 };
 
 exports.new_member_get = function (req, res, next) {
-  res.send('this is member get');
+  res.render('member', { title: 'Become a member', user: currentUser });
 };
 
 exports.new_member_post = function (req, res, next) {
-  res.send('member post');
+  if (req.body.memberPassword === process.env.MEMBER_PASSCODE) {
+    User.findByIdAndUpdate(
+      currentUser.id,
+      { $set: { member: true } },
+      {},
+      (err) => {
+        if (err) {
+          return next(err);
+        }
+      }
+    );
+    res.redirect('/');
+  } else {
+    res.render('member', {
+      title: 'Become a member',
+      error: 'Incorrect passcode',
+      user: currentUser,
+    });
+  }
 };
