@@ -10,12 +10,6 @@ global.currentUser = '';
 
 /* GET home page. */
 router.get('/', messageController.get_index);
-// router.get('/', function (req, res, next) {
-//   res.render('index', {
-//     title: 'Members Only',
-//     user: currentUser,
-//   });
-// });
 
 router.get('/sign-up', userController.sign_up_get);
 
@@ -25,7 +19,10 @@ router.get('/login', userController.login_get);
 
 router.post(
   '/login',
-  passport.authenticate('local'),
+  passport.authenticate('local', {
+    failureRedirect: '/login',
+    failureFlash: 'Incorrect user or password',
+  }),
   function (req, res, next) {
     try {
       global.currentUser = req.user;

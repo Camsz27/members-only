@@ -81,6 +81,8 @@ exports.new_member_post = function (req, res, next) {
       (err) => {
         if (err) {
           return next(err);
+        } else {
+          currentUser.member = true;
         }
       }
     );

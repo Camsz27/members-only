@@ -2,10 +2,18 @@ const Message = require('../models/message');
 const { body, validationResult } = require('express-validator');
 
 exports.get_index = function (req, res, next) {
-  res.render('index', {
-    title: 'Members Only',
-    user: currentUser,
-  });
+  Message.find({})
+    .populate('author')
+    .exec((err, messageList) => {
+      if (err) {
+        return next(err);
+      }
+      res.render('index', {
+        title: 'Members Only',
+        user: currentUser,
+        messages: messageList,
+      });
+    });
 };
 
 exports.new_message_get = function (req, res, next) {
