@@ -9,12 +9,13 @@ const messageController = require('../controllers/messageController');
 global.currentUser = '';
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', {
-    title: 'Members Only',
-    user: currentUser,
-  });
-});
+router.get('/', messageController.get_index);
+// router.get('/', function (req, res, next) {
+//   res.render('index', {
+//     title: 'Members Only',
+//     user: currentUser,
+//   });
+// });
 
 router.get('/sign-up', userController.sign_up_get);
 
@@ -51,9 +52,9 @@ router.get('/new-member', userController.new_member_get);
 router.post('/new-member', userController.new_member_post);
 
 // Take user to page where he can submit a new message
-router.get('/new-message', messageController.new_member_get);
+router.get('/new-message', messageController.new_message_get);
 
 // Save message in db and display in the homepage
-router.post('/new-member', messageController.new_member_post);
+router.post('/new-message', messageController.new_message_post);
 
 module.exports = router;
