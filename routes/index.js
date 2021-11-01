@@ -4,6 +4,7 @@ const passport = require('passport');
 
 // Import controllers
 const userController = require('../controllers/userController');
+const messageController = require('../controllers/messageController');
 
 global.currentUser = '';
 
@@ -40,10 +41,19 @@ router.post(
   }
 );
 
+// Log out user from current session
 router.post('/log-out', userController.log_out_post);
 
+// Take user to form where he can become a member
 router.get('/new-member', userController.new_member_get);
 
+// Verify if passcode was correct and include user as member
 router.post('/new-member', userController.new_member_post);
+
+// Take user to page where he can submit a new message
+router.get('/new-message', messageController.new_member_get);
+
+// Save message in db and display in the homepage
+router.post('/new-member', messageController.new_member_post);
 
 module.exports = router;
