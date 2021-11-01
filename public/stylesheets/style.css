@@ -5,17 +5,29 @@ body {
   padding: 0;
 }
 
-li:hover {
+li:hover,
+#logout:hover {
   font-weight: bold;
   text-decoration: underline;
 }
 
 header,
-form {
+form,
+#logout {
   background-color: #212121;
 }
 
 #userHeader:hover {
   text-decoration: none;
   font-weight: normal;
+}
+
+footer {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+#logout {
+  border: none;
 }

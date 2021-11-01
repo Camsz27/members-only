@@ -13,9 +13,12 @@ html
         a(class='navbar-brand fw-bolder fs-3 text-white' href='/') Members Only
         ul(class='d-flex list-unstyled m-0')
           if user
-            li(class='nav-item')
-              a(class='nav-link text-white fs-5' href='/sign-up') Become a member
             li(class='nav-item text-white fs-5 align-self-center' id='userHeader') Welcome #{user.username}!
+            li(class='nav-item')
+              a(class='nav-link text-white fs-5' href='/new-member') Become a member
+            form(action="/log-out", method="post") 
+              li(class='nav-item')
+                input(class='nav-link text-white fs-5' name='logout' value='Logout' type='submit' id='logout')
           else 
             li(class='nav-item')
               a(class='nav-link text-white fs-5' href='/sign-up') Sign Up

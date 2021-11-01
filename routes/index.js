@@ -5,9 +5,14 @@ const passport = require('passport');
 // Import controllers
 const userController = require('../controllers/userController');
 
+global.currentUser = '';
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Members Only', user: currentUser });
+  res.render('index', {
+    title: 'Members Only',
+    user: currentUser,
+  });
 });
 
 router.get('/sign-up', userController.sign_up_get);
@@ -35,26 +40,10 @@ router.post(
   }
 );
 
-// router.post(
-//   '/login',
-//   passport.authenticate('local', { failureRedirect: '/login' }),
-//   function (req, res) {
-//     try {
-//       req.logIn(req.user, (err) => {
-//         if (err) {
-//           return next(err);
-//         }
-//       });
-//     } catch (error) {
-//       return error;
-//     }
-//     // res.render('index', { title: 'Members Only', user: req.user.username });
-//     //console.log(req.user);
-//     //console.log(req.session);
-//     res.redirect('/');
-//     //console.log(req.user);
-//     //console.log(req.session);
-//   }
-// );
+router.post('/log-out', userController.log_out_post);
+
+router.get('/new-member', userController.new_member_get);
+
+router.post('/new-member', userController.new_member_post);
 
 module.exports = router;
