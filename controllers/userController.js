@@ -95,3 +95,17 @@ exports.new_member_post = function (req, res, next) {
     });
   }
 };
+
+exports.isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+};
+
+exports.isNotAuthenticated = function (req, res, next) {
+  if (!req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+};
