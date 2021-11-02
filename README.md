@@ -1,16 +1,16 @@
 # Members Only
 
-Summary of the project
+It is a message board where members can post their messages for everyone else to see, but only those who are members can see the authors of each message. If you want to be a member use the password authenticateMember once you have logged in and you'll be able to see the authors of the messages.
 
 ## Live Demo
 
-[Click Here](https://camsz27.github.io/shopping-cart/)
+[Click Here](https://shrouded-crag-11432.herokuapp.com/)
 
-<img src="./src/preview.gif" width="900" alt="App preview"/>
+<img src="./public/images/preview.png" width="900" alt="App preview"/>
 
 ## Description
 
-Description of the project
+This was my first project working with authentication, I used PassportJS for this, along with bcrypt for hashing the passwords.
 
 ## Built With
 
