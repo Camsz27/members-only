@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
+const compression = require('compression');
+const helmet = require('helmet');
 
 const initializePassport = require('./controllers/passportConfig');
 initializePassport(passport);
@@ -26,6 +28,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(compression());
+app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -31,3 +31,11 @@ footer {
 #logout {
   border: none;
 }
+
+#addIcon {
+  animation: transform 0.3s;
+}
+
+#addIcon:hover {
+  transform: scale(1.2);
+}
